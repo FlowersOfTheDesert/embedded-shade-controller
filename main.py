@@ -8,7 +8,6 @@ DEVICE_ID = "sunshade-01"
 PSK = b"secretkey"
 SERVER_URL = "http://localhost:5138/api/deviceauth"
 LISTENER_URL = "http://localhost:5138/api/channel/listener/connect"
-LONG_POLL_URL = "http://localhost/long-poll-endpoint"
 
 def authenticate():
     try:
@@ -54,7 +53,7 @@ def long_polling_client(token, channel_id):
     
     while True:
         try:
-            response = requests.post(LONG_POLL_URL, headers=headers, json=payload, timeout=30)
+            response = requests.post(LISTENER_URL, headers=headers, json=payload, timeout=30)
             if response.status_code == 200:
                 data = response.json()
                 action = data.get("action")
