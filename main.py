@@ -76,7 +76,7 @@ class DeviceAPI:
         """Request authentication challenge from server"""
         response = self._make_request(
             "deviceauth/challenge",
-            json={"deviceId": self.device_id}
+            json={"Serial": self.device_id}
         )
         return response["challenge"]
 
@@ -86,7 +86,7 @@ class DeviceAPI:
         response = self._make_request(
             "deviceauth/respond",
             json={
-                "deviceId": self.device_id,
+                "Serial": self.device_id,
                 "challengeResponse": signature
             }
         )
